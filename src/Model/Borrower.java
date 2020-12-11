@@ -19,6 +19,10 @@ public class Borrower implements Serializable {
         this.borrowerPhone = borrowerPhone;
     }
 
+    public Borrower() {
+
+    }
+
 
     public int getBorrowerId() {
         return borrowerId;
