@@ -1,9 +1,11 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class Book implements Serializable {
-    public static int id = 100000;
+    public static int id = 1000;
     private int bookID;
     private String bookName;
     private String author;

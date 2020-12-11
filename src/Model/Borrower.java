@@ -1,6 +1,8 @@
 package Model;
 
-public class Borrower {
+import java.io.Serializable;
+
+public class Borrower implements Serializable {
     private int borrowerId;
     private String borrowerName;
     private String borrowerAddress;
@@ -13,7 +15,11 @@ public class Borrower {
         this.borrowerAddress = borrowerAddress;
         this.borrowerPhone = borrowerPhone;
     }
-    public Borrower(){}
+    public Borrower(String borrowerName, String borrowerAdress, String borrowerPhone){}
+
+    public Borrower() {
+
+    }
 
     public int getBorrowerId() {
         return borrowerId;
@@ -49,7 +55,7 @@ public class Borrower {
 
     @Override
     public String toString() {
-        return "Borrower{" +
+        return "BookControl{" +
                 "borrowerId=" + borrowerId +
                 ", borrowerName='" + borrowerName + '\'' +
                 ", borrowerAddress='" + borrowerAddress + '\'' +

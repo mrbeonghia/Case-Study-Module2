@@ -17,6 +17,9 @@ public class Manage {
         this.total = total;
     }
 
+    public Manage(int borrowerID, String borrowerName, String bookName, String quantity, String state, int total) {
+    }
+
     public Borrower getBorrower() {
         return borrower;
     }
