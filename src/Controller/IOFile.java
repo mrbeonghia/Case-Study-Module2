@@ -49,7 +49,47 @@ public class IOFile {
         }
     }
 
+    public static void updateBookToFile(String path, ArrayList<Book> book) {
+        File file = new File(path);
+        FileWriter fileWriter = null;
 
+        try {
+            if (!file.exists()) {
+                System.out.println("File not exits");
+                file.createNewFile();
+            }
+            fileWriter = new FileWriter(file);
+
+            for (int i = 0; i < book.size(); i++) {
+                fileWriter.append(book.get(i).getBookId()+"");
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(book.get(i).getBookName());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(book.get(i).getAuthor());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(book.get(i).getCategory());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(book.get(i).getPublisher());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(book.get(i).getPublishYear()+"");
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(book.get(i).getQuantity()+"");
+                fileWriter.append(NEW_LINE_SEPARATOR);
+                fileWriter.flush();
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (fileWriter != null) {
+                try {
+                    System.out.println("Write success!");
+                    fileWriter.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }
 
     public static ArrayList<Book> readBookFromFile() {
         ArrayList<Book> listBooks = new ArrayList<>();

@@ -22,7 +22,8 @@ public class LibraryView {
             System.out.println("5. Sắp xếp sách theo tên.");
             System.out.println("6. Tìm kiếm sách theo tên.");
             System.out.println("7. Tìm kiếm sách theo id.");
-            System.out.println("8. Xoá một đầu sách");
+            System.out.println("8. Xoá một đầu sách theo id.");
+            System.out.println("9. CHỉnh sửa một đàu sách.");
             System.out.println("0. Thoát chương trình.");
             System.out.println("Bạn chọn ? ");
             try {
@@ -72,15 +73,22 @@ public class LibraryView {
                     bookControl.findBookByName();
                     break;
                 case 7:
-                    System.out.println("Nhập Id sách");
+                    System.out.println("Nhập id sách cần tìm");
                     int id = Integer.parseInt(scanner.nextLine());
                     System.out.println(bookControl.findBookById(id));
                     break;
                 case 8:
-                    System.out.println("Nhập Id sách");
-                    int rm = Integer.parseInt(scanner.nextLine());
-                    bookControl.removeBook(rm);
+                    System.out.println("Nhập id sách cần xoá");
+                    int idRemove = Integer.parseInt(scanner.nextLine());
+                    bookControl.removeBook(idRemove);
                     break;
+//
+                case 9:
+//                    System.out.println("Nhập id sách cần sửa");
+//                    int idUpDate = Integer.parseInt(scanner.nextLine());
+//                    bookControl.removeBook(idUpDate);
+//                    bookControl.updateListProduct();
+//                    break;
                 default:
                     System.out.println("Not found!");
             }

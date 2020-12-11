@@ -106,13 +106,28 @@ public class BookControl {
         }
     }
 
-    public ArrayList<Book> removeBook(int id) {
-        for (int i = 0; i < listBooks.size(); i++) {
-            if (id == listBooks.get(i).getBookId()) {
-                listBooks.remove(i);
+    public void removeBook(int idRemove){
+        try {
+            Book book = null;
+            for (Book b : listBooks){
+                if (b.getBookId() == idRemove){
+                    book = b;
+                    break;
+                }
             }
+            listBooks.indexOf(book);
+            listBooks.remove(listBooks.indexOf(book));
+            if (book == null){
+                System.out.println("Mã sản phẩm không tồn tại, mời nhập lại: ");
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
         }
-        return listBooks;
+        IOFile.updateBookToFile("Book.csv",  listBooks);
+    }
+
+    public void updateListProduct() {
+        IOFile.updateBookToFile("Book.csv", BookControl.getListBooks());
     }
 
 }
