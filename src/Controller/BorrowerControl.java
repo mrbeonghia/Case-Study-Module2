@@ -28,6 +28,7 @@ public class BorrowerControl {
         System.out.println("_________Nhập thông tin người mượn sách_________");
         String name, address, phone;
         Borrower borrower = new Borrower();
+        borrower.setBorrowerId();
         System.out.println("Nhập họ và tên: ");
         name = scanner.nextLine();
         borrower.setBorrowerName(name);

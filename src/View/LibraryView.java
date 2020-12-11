@@ -2,7 +2,7 @@ package View;
 
 import Controller.*;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LibraryView {
@@ -11,6 +11,7 @@ public class LibraryView {
     public static void main(String[] args) {
         BookControl bookControl = new BookControl();
         BorrowerControl borrowerControl = new BorrowerControl();
+        ManageControl manageControl = new ManageControl();
         int choice = 0;
         Scanner scanner = new Scanner(System.in);
 
@@ -25,8 +26,12 @@ public class LibraryView {
             System.out.println("7. Tìm kiếm thông tin người mượn sách theo tên.");
             System.out.println("0. Thoát chương trình.");
             System.out.println("Bạn chọn ? ");
-
-            choice = Integer.parseInt(scanner.nextLine());
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            }catch (Exception e){
+                System.err.println(e);
+                System.err.println("Nhập sai định dạng, vui lòng nhập lại");
+            }
 
             switch (choice) {
                 case 0:
@@ -61,11 +66,36 @@ public class LibraryView {
                     break;
 
                 case 5:
-                    ManageControl.getManages();
+
+//                    manageControl.setManageInfo();
+//                    managerments = IOFile.readManageFromFile();
+//                    int sortChoice = 0;
+//                    do {
+//                        System.out.println("___________Lựa chọn sắp xếp___________");
+//                        System.out.println("1. Sắp xếp theo tên bạn đọc.");
+//                        System.out.println("2. Sắp xếp theo tổng số lượng mượn.");
+//                        System.out.println("0. Thoát khỏi chức năng này.");
+//                        System.out.println("Bạn chọn ? ");
+//                        sortChoice = scanner.nextInt();
+//                        switch (sortChoice) {
+//                            case 0:
+//                                break;
+//                            case 1:
+//                                managerments = bookControl.sortBookByName();
+//                                showBRMInfo(managerments);
+//                                break;
+//                            case 2:
+//                                managerments = sortByNumOfBorrowed(managerments);
+//                                showBRMInfo(managerments);
+//                                break;
+//                        }
+//                    } while (sortChoice != 0);
+
                     break;
 
                 case 6:
-                    bookControl.sortBookByName();
+//                    bookControl.sortBookByName();
+//                    manageControl.getManageInfo();
                     break;
                 case 7:
                     System.out.println("Nhập Id sách");

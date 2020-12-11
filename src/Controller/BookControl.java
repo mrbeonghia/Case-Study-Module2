@@ -28,6 +28,7 @@ public class BookControl {
         String bookName, author, category, publisher;
         int quantity, publishYear;
         Book book = new Book();
+        book.setBookId();
         System.out.println("Nhập tên sách: ");
         bookName = scanner.nextLine();
         book.setBookName(bookName);
@@ -85,7 +86,7 @@ public class BookControl {
 
     public Book findBookById(int id) {
         for (Book b:listBooks) {
-            if (b.getBookID() == id) {
+            if (b.getBookId() == id) {
                 return b;
             }
         }
@@ -103,6 +104,15 @@ public class BookControl {
         for (Book list :listBooks) {
             System.out.println(list);
         }
+    }
+
+    public ArrayList<Book> removeBook(int id) {
+        for (int i = 0; i < listBooks.size(); i++) {
+            if (id == listBooks.get(i).getBookId()) {
+                listBooks.remove(i);
+            }
+        }
+        return listBooks;
     }
 
 }

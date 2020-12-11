@@ -1,12 +1,13 @@
 package Model;
 
+import Controller.IOFile;
+
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 public class Book implements Serializable {
-    public static int id = 1000;
-    private int bookID;
+    public static int idCounter = 0;
+    private int bookId;
     private String bookName;
     private String author;
     private String category;
@@ -14,16 +15,8 @@ public class Book implements Serializable {
     private int publishYear;
     private int quantity;
 
-    public Book(int bookID) {
-        this.bookID = bookID;
-    }
-
-    public Book() {
-    }
-
-    public Book(String bookName, String author,
-                String category, String publisher, int publishYear, int quantity) {
-        setBookID();// id tu tang
+    public Book(int bookId, String bookName, String author, String category, String publisher, int publishYear, int quantity) {
+        this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
         this.category = category;
@@ -31,17 +24,28 @@ public class Book implements Serializable {
         this.publishYear = publishYear;
         this.quantity = quantity;
     }
+    public Book(int i){}
 
-    public int getBookID() {
-        return bookID;
+    public Book() {
+
     }
 
-    public void setBookID() {
-        this.bookID = id++;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBookID(int id){
-        bookID = id;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public void setBookId(){
+        List<Book> bookList = IOFile.readBookFromFile();
+        if (bookList.isEmpty()) {
+            idCounter = 0;
+        } else {
+            idCounter = bookList.get(bookList.size() - 1).getBookId();
+        }
+        this.bookId = ++idCounter;
     }
 
     public String getBookName() {
@@ -94,8 +98,14 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[bookID= " + bookID + ", bookName= " + bookName
-                + ", category= " + category + ", author= " + author
-                + ", publishYear= " + publishYear + ", quantity= " + quantity + "]";
+        return "Book{" +
+                "bookId=" + bookId +
+                ", bookName='" + bookName + '\'' +
+                ", author='" + author + '\'' +
+                ", category='" + category + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", publishYear=" + publishYear +
+                ", quantity=" + quantity +
+                '}';
     }
 }

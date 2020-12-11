@@ -1,13 +1,16 @@
 package Model;
 
+import Controller.IOFile;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class Borrower implements Serializable {
     private int borrowerId;
     private String borrowerName;
     private String borrowerAddress;
     private String borrowerPhone;
-    public static int idCounter = 100;
+    public static int idCounter = 0;
 
     public Borrower(int borrowerId, String borrowerName, String borrowerAddress, String borrowerPhone) {
         this.borrowerId = borrowerId;
@@ -15,18 +18,20 @@ public class Borrower implements Serializable {
         this.borrowerAddress = borrowerAddress;
         this.borrowerPhone = borrowerPhone;
     }
-    public Borrower(String borrowerName, String borrowerAdress, String borrowerPhone){}
 
-    public Borrower() {
-
-    }
 
     public int getBorrowerId() {
         return borrowerId;
     }
 
-    public void setBorrowerId(int borrowerId) {
-        this.borrowerId = borrowerId;
+    public void setBorrowerId() {
+        List<Borrower> borrowerList = IOFile.readBorrowerFromFile();
+        if (borrowerList.isEmpty()) {
+            idCounter = 0;
+        } else {
+            idCounter = borrowerList.get(borrowerList.size() - 1).getBorrowerId();
+        }
+        this.borrowerId = ++idCounter;
     }
 
     public String getBorrowerName() {
@@ -55,12 +60,13 @@ public class Borrower implements Serializable {
 
     @Override
     public String toString() {
-        return "BookControl{" +
+        return "Borrower{" +
                 "borrowerId=" + borrowerId +
                 ", borrowerName='" + borrowerName + '\'' +
                 ", borrowerAddress='" + borrowerAddress + '\'' +
                 ", borrowerPhone='" + borrowerPhone + '\'' +
                 '}';
     }
+
 }
 
